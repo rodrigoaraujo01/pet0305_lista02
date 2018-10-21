@@ -47,3 +47,8 @@ for i, (eva, eve) in enumerate(eigen_pairs):
 
 for eva, eve in eigen_pairs:
     print(eva/sum([x[0] for x in eigen_pairs]))
+
+
+# Referências
+# https://sebastianraschka.com/Articles/2014_pca_step_by_step.html
+# https://onlinecourses.science.psu.edu/stat505/node/53/
