@@ -66,8 +66,25 @@ class GaussianClassifier(object):
         for i in range(2):
             # Get all lines whose 2nd column equals i
             filtered_data = self.train_data[i == self.train_data[:,2]]
-            self.means.append([filtered_data[:,0].mean(), filtered_data[:,1].mean()])
-            self.covs.append(np.cov(filtered_data[:,:2].T))
+            # self.means.append([filtered_data[:,0].mean(), filtered_data[:,1].mean()])
+            n_elem = len(filtered_data[:,0])
+            self.means.append([filtered_data[:,0].sum()/n_elem, filtered_data[:,1].sum()/n_elem])
+            # Easy way
+            # self.covs.append(np.cov(filtered_data[:,:2].T))
+
+            x0 = filtered_data[:,0]
+            x1 = filtered_data[:,1]
+            mean0 = np.average(x0)
+            mean1 = np.average(x1)
+            c00 = 1/n_elem * ((x0-mean0) @ (x0-mean0))
+            c01 = 1/n_elem * ((x0-mean0) @ (x1-mean1))
+            c10 = 1/n_elem * ((x1-mean1) @ (x0-mean0))
+            c11 = 1/n_elem * ((x1-mean1) @ (x1-mean1))
+            # print(c00, c01, c10, c11)
+            self.covs.append(np.matrix([[c00, c01], [c10, c11]]))
+            # Easy way
+            # self.covs.append(np.cov(filtered_data[:,:2].T))
+            # print(np.cov(filtered_data[:,:2].T))
 
     @staticmethod
     def calculate_probability(x, mean, cov):
@@ -139,3 +156,4 @@ if __name__ == "__main__":
 
 # References
 # https://www.antoniomallia.it/lets-implement-a-gaussian-naive-bayes-classifier-in-python.html
+# http://ttic.uchicago.edu/~shubhendu/Slides/Estimation.pdf
