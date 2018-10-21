@@ -134,3 +134,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+# References
+# https://www.antoniomallia.it/lets-implement-a-gaussian-naive-bayes-classifier-in-python.html
