@@ -75,3 +75,6 @@ predictions = pipeline.predict(msg_test)
 print(classification_report(class_test, predictions))
 
 print(confusion_matrix(class_test,predictions))
+
+# References
+# https://www.kaggle.com/astandrik/simple-spam-filter-using-naive-bayes/notebook
