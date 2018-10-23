@@ -78,3 +78,4 @@ print(confusion_matrix(class_test,predictions))
 
 # References
 # https://www.kaggle.com/astandrik/simple-spam-filter-using-naive-bayes/notebook
+# https://en.wikipedia.org/wiki/Tf–idf
